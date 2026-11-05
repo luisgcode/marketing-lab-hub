@@ -51,24 +51,25 @@
   .apptitle { font-size: 15px; font-weight: 500; letter-spacing: -.01em; color: var(--on-bar); margin: 0; }
   .apbadge { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: 2px 8px; border-radius: 3px; }
 
-  .wrap { max-width: 1100px; margin: 0 auto; padding-block: 32px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .wrap { max-width: 1240px; margin: 0 auto; padding-block: 32px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
   h1 { font-size: 26px; margin: 0 0 6px; font-weight: 700; letter-spacing: -.02em; }
   .lede { color: var(--ink-soft); margin: 0 0 28px; font-size: 15px; max-width: 64ch; }
 
   .area { margin-bottom: 30px; }
   .area h2 { margin: 0 0 12px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--ink-soft); }
-  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
   .card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; color: var(--ink); text-decoration: none; transition: border-color .15s, box-shadow .15s, transform .15s; min-width: 0; }
   .card:hover { border-color: var(--accent); box-shadow: 0 6px 18px rgba(0,0,0,.08); transform: translateY(-2px); }
   .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .cover { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--head); border-bottom: 1px solid var(--line); }
   .cover img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-  .body { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px 16px; min-width: 0; }
+  .body { display: flex; flex-direction: column; gap: 3px; padding: 12px 14px 14px; min-width: 0; }
   .top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-  .name { font-weight: 650; font-size: 16px; }
+  .name { font-weight: 650; font-size: 15px; }
   .name::after { content: " \2197"; color: var(--accent); font-weight: 400; }
-  .what { font-size: 14px; }
-  .goal { color: var(--ink-soft); font-size: 13px; }
+  .what { font-size: 13.5px; }
+  .goal { color: var(--ink-soft); font-size: 12.5px; }
   .access { font-size: 12px; white-space: nowrap; flex: none; }
   .access.open { color: var(--ok); }
   .access.login { color: var(--pending); }
@@ -76,7 +77,8 @@
   .credit-tab { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); background: var(--bar); color: var(--on-bar-soft); font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; padding: 6px 20px calc(6px + env(safe-area-inset-bottom, 0px)); border-radius: 6px 6px 0 0; white-space: nowrap; z-index: 50; pointer-events: none; }
   .credit-tab strong { color: var(--accent); font-weight: 700; }
 
-  @media (max-width: 700px) { .cards { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 900px) { .areas { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 560px) { .cards { grid-template-columns: minmax(0, 1fr); } }
 </style>
 
 <header class="apphead">
@@ -90,6 +92,7 @@
 <main class="wrap">
   <h1>Tools index</h1>
   <p class="lede">Every dashboard and tool we use for the Dimplex, Convectair and Cadet websites. Click a card to open it.</p>
+  <div class="areas">
   <section class="area" aria-labelledby="a-product-catalog">
     <h2 id="a-product-catalog">Product catalog</h2>
     <div class="cards">
@@ -174,6 +177,7 @@
       </a>
     </div>
   </section>
+  </div>
 </main>
 
 <div class="credit-tab">Marketing <strong>Lab</strong> · GDA</div>
