@@ -55,29 +55,28 @@
   h1 { font-size: 26px; margin: 0 0 6px; font-weight: 700; letter-spacing: -.02em; }
   .lede { color: var(--ink-soft); margin: 0 0 28px; font-size: 15px; max-width: 64ch; }
 
-  .area { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; margin-bottom: 18px; overflow: hidden; }
-  .area h2 { margin: 0; padding: 10px 16px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; background: var(--head); border-bottom: 1px solid var(--line); }
-
-  .row { display: grid; grid-template-columns: 250px 1fr 90px; gap: 6px 20px; padding: 14px 16px; border-top: 1px solid var(--line-soft); align-items: start; }
-  .area h2 + .row { border-top: none; }
-  .name a { font-weight: 650; font-size: 15px; color: var(--ink); text-decoration: none; }
-  .name a:hover { color: var(--accent); text-decoration: underline; }
-  .name a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .name a::after { content: " ↗"; color: var(--accent); font-weight: 400; }
-  .info { min-width: 0; font-size: 14px; }
-  .info p { margin: 0; }
-  .info .goal { color: var(--ink-soft); font-size: 13px; margin-top: 3px; }
-  .access { font-size: 12.5px; text-align: right; white-space: nowrap; }
+  .area { margin-bottom: 30px; }
+  .area h2 { margin: 0 0 12px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--ink-soft); }
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; color: var(--ink); text-decoration: none; transition: border-color .15s, box-shadow .15s, transform .15s; min-width: 0; }
+  .card:hover { border-color: var(--accent); box-shadow: 0 6px 18px rgba(0,0,0,.08); transform: translateY(-2px); }
+  .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .cover { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--head); border-bottom: 1px solid var(--line); }
+  .cover img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .body { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px 16px; min-width: 0; }
+  .top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .name { font-weight: 650; font-size: 16px; }
+  .name::after { content: " \2197"; color: var(--accent); font-weight: 400; }
+  .what { font-size: 14px; }
+  .goal { color: var(--ink-soft); font-size: 13px; }
+  .access { font-size: 12px; white-space: nowrap; flex: none; }
   .access.open { color: var(--ok); }
   .access.login { color: var(--pending); }
-
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
   .credit-tab { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); background: var(--bar); color: var(--on-bar-soft); font-size: 10px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; padding: 6px 20px calc(6px + env(safe-area-inset-bottom, 0px)); border-radius: 6px 6px 0 0; white-space: nowrap; z-index: 50; pointer-events: none; }
   .credit-tab strong { color: var(--accent); font-weight: 700; }
 
-  @media (max-width: 700px) {
-    .row { grid-template-columns: 1fr auto; }
-    .info { grid-column: 1 / -1; grid-row: 2; }
-  }
+  @media (max-width: 700px) { .cards { grid-template-columns: minmax(0, 1fr); } }
 </style>
 
 <header class="apphead">
@@ -90,64 +89,91 @@
 
 <main class="wrap">
   <h1>Tools index</h1>
-  <p class="lede">Every dashboard and tool we use for the Dimplex, Convectair and Cadet websites. Click a name to open it.</p>
-
-  <section class="area">
-    <h2>Product catalog</h2>
-    <div class="row">
-      <div class="name"><a href="https://luisgcode.github.io/pdp-image-status/#images" target="_blank" rel="noopener">Product Image Tracker</a></div>
-      <div class="info"><p>Which images and videos each product page has, and what is still missing.</p><p class="goal">141 products audited across the three sites.</p></div>
-      <div class="access open">Open link</div>
-    </div>
-    <div class="row">
-      <div class="name"><a href="https://luisgcode.github.io/pdp-image-status/#attributes" target="_blank" rel="noopener">Product Attribute Tracker</a></div>
-      <div class="info"><p>Which specs each product page shows, against one standard list.</p><p class="goal">Spec tables now match on all three sites.</p></div>
-      <div class="access open">Open link</div>
-    </div>
-  </section>
-
-  <section class="area">
-    <h2>Analytics</h2>
-    <div class="row">
-      <div class="name"><a href="https://datastudio.google.com/reporting/d6a1208f-c31e-45f2-8506-339c58a59112" target="_blank" rel="noopener">Executive Web Dashboard</a></div>
-      <div class="info"><p>Dimplex website traffic at a glance (Looker Studio).</p><p class="goal">Found that the traffic from China was bots.</p></div>
-      <div class="access open">Open link</div>
-    </div>
-    <div class="row">
-      <div class="name"><a href="https://datastudio.google.com/reporting/6cb93377-59ab-45f4-8409-adbce5ea11e7/page/56X9F" target="_blank" rel="noopener">Email Performance</a></div>
-      <div class="info"><p>What people do on the website after clicking our marketing emails (Looker Studio).</p><p class="goal">The result of each send, without asking for a report.</p></div>
-      <div class="access open">Open link</div>
+  <p class="lede">Every dashboard and tool we use for the Dimplex, Convectair and Cadet websites. Click a card to open it.</p>
+  <section class="area" aria-labelledby="a-product-catalog">
+    <h2 id="a-product-catalog">Product catalog</h2>
+    <div class="cards">
+      <a class="card" href="https://luisgcode.github.io/pdp-image-status/#images" target="_blank" rel="noopener">
+        <span class="cover"><img src="assets/covers/image-tracker.jpg?v=2" width="800" height="500" alt="Screenshot of Product Image Tracker" loading="lazy"></span>
+        <span class="body">
+          <span class="top"><span class="name">Product Image Tracker</span><span class="access open">Open link</span></span>
+          <span class="what">Which images and videos each product page has, and what is still missing.</span>
+          <span class="goal">141 products audited across the three sites.</span>
+        </span>
+      </a>
+      <a class="card" href="https://luisgcode.github.io/pdp-image-status/#attributes" target="_blank" rel="noopener">
+        <span class="cover"><img src="assets/covers/attribute-tracker.jpg?v=2" width="800" height="500" alt="Screenshot of Product Attribute Tracker" loading="lazy"></span>
+        <span class="body">
+          <span class="top"><span class="name">Product Attribute Tracker</span><span class="access open">Open link</span></span>
+          <span class="what">Which specs each product page shows, against one standard list.</span>
+          <span class="goal">Spec tables now match on all three sites.</span>
+        </span>
+      </a>
     </div>
   </section>
-
-  <section class="area">
-    <h2>Brand protection</h2>
-    <div class="row">
-      <div class="name"><a href="https://dimplex-map-auto.fly.dev" target="_blank" rel="noopener">MAP Violations: Amazon</a></div>
-      <div class="info"><p>Daily check of Amazon sellers listing below MAP.</p><p class="goal">Running every day since May 2026, used by Customer Service.</p></div>
-      <div class="access login">Login</div>
-    </div>
-    <div class="row">
-      <div class="name"><a href="https://dimplex-map-manual.fly.dev" target="_blank" rel="noopener">MAP Violations: Manual Log</a></div>
-      <div class="info"><p>Violations found outside Amazon: distributors, stores, tip offs.</p><p class="goal">Every violation in one record.</p></div>
-      <div class="access login">Login</div>
-    </div>
-  </section>
-
-  <section class="area">
-    <h2>Content &amp; market</h2>
-    <div class="row">
-      <div class="name"><a href="https://luisgcode.github.io/marketing-lab-tools/" target="_blank" rel="noopener">Image Optimizer</a></div>
-      <div class="info"><p>Puts product images in the format the website accepts.</p><p class="goal">The team prepares images without waiting for a designer.</p></div>
-      <div class="access open">Open link</div>
-    </div>
-    <div class="row">
-      <div class="name"><a href="https://luisgcode.github.io/instagram-competitor-tracker/" target="_blank" rel="noopener">Instagram Competitor Tracker</a></div>
-      <div class="info"><p>Dimplex against four competitors on Instagram: what they post, what gets watched and how they run the account.</p><p class="goal">The base for our social media plan.</p></div>
-      <div class="access open">Open link</div>
+  <section class="area" aria-labelledby="a-analytics">
+    <h2 id="a-analytics">Analytics</h2>
+    <div class="cards">
+      <a class="card" href="https://datastudio.google.com/reporting/d6a1208f-c31e-45f2-8506-339c58a59112" target="_blank" rel="noopener">
+        <span class="cover"><img src="assets/covers/exec-dashboard.jpg?v=2" width="800" height="500" alt="Screenshot of Executive Web Dashboard" loading="lazy"></span>
+        <span class="body">
+          <span class="top"><span class="name">Executive Web Dashboard</span><span class="access open">Open link</span></span>
+          <span class="what">Dimplex website traffic at a glance (Looker Studio).</span>
+          <span class="goal">Found that the traffic from China was bots.</span>
+        </span>
+      </a>
+      <a class="card" href="https://datastudio.google.com/reporting/6cb93377-59ab-45f4-8409-adbce5ea11e7/page/56X9F" target="_blank" rel="noopener">
+        <span class="cover"><img src="assets/covers/email-performance.jpg?v=2" width="800" height="500" alt="Screenshot of Email Performance" loading="lazy"></span>
+        <span class="body">
+          <span class="top"><span class="name">Email Performance</span><span class="access open">Open link</span></span>
+          <span class="what">What people do on the website after clicking our marketing emails (Looker Studio).</span>
+          <span class="goal">The result of each send, without asking for a report.</span>
+        </span>
+      </a>
     </div>
   </section>
-
+  <section class="area" aria-labelledby="a-brand-protection">
+    <h2 id="a-brand-protection">Brand protection</h2>
+    <div class="cards">
+      <a class="card" href="https://dimplex-map-auto.fly.dev" target="_blank" rel="noopener">
+        <span class="cover"><img src="assets/covers/map-amazon.jpg?v=2" width="800" height="500" alt="Screenshot of MAP Violations: Amazon" loading="lazy"></span>
+        <span class="body">
+          <span class="top"><span class="name">MAP Violations: Amazon</span><span class="access login">Login</span></span>
+          <span class="what">Daily check of Amazon sellers listing below MAP.</span>
+          <span class="goal">Running every day since May 2026, used by Customer Service.</span>
+        </span>
+      </a>
+      <a class="card" href="https://dimplex-map-manual.fly.dev" target="_blank" rel="noopener">
+        <span class="cover"><img src="assets/covers/map-manual.jpg?v=2" width="800" height="500" alt="Screenshot of MAP Violations: Manual Log" loading="lazy"></span>
+        <span class="body">
+          <span class="top"><span class="name">MAP Violations: Manual Log</span><span class="access login">Login</span></span>
+          <span class="what">Violations found outside Amazon: distributors, stores, tip offs.</span>
+          <span class="goal">Every violation in one record.</span>
+        </span>
+      </a>
+    </div>
+  </section>
+  <section class="area" aria-labelledby="a-content-and-market">
+    <h2 id="a-content-and-market">Content and market</h2>
+    <div class="cards">
+      <a class="card" href="https://luisgcode.github.io/marketing-lab-tools/" target="_blank" rel="noopener">
+        <span class="cover"><img src="assets/covers/image-optimizer.jpg?v=2" width="800" height="500" alt="Screenshot of Image Optimizer" loading="lazy"></span>
+        <span class="body">
+          <span class="top"><span class="name">Image Optimizer</span><span class="access open">Open link</span></span>
+          <span class="what">Puts product images in the format the website accepts.</span>
+          <span class="goal">The team prepares images without waiting for a designer.</span>
+        </span>
+      </a>
+      <a class="card" href="https://luisgcode.github.io/instagram-competitor-tracker/" target="_blank" rel="noopener">
+        <span class="cover"><img src="assets/covers/instagram-tracker.jpg?v=2" width="800" height="500" alt="Screenshot of Instagram Competitor Tracker" loading="lazy"></span>
+        <span class="body">
+          <span class="top"><span class="name">Instagram Competitor Tracker</span><span class="access open">Open link</span></span>
+          <span class="what">Dimplex against four competitors on Instagram: what they post, what gets watched and how they run the account.</span>
+          <span class="goal">The base for our social media plan.</span>
+        </span>
+      </a>
+    </div>
+  </section>
 </main>
 
 <div class="credit-tab">Marketing <strong>Lab</strong> · GDA</div>
